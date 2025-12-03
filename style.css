@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    /* FIX LỖI TRẮNG MÀN HÌNH: */
+    background-color: #1a1a1a; /* Màu nền tối dự phòng khi ảnh lỗi */
+    /* Dùng ảnh online để đảm bảo luôn hiện đẹp */
+    background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+    /* Nếu bạn muốn dùng ảnh 8k.jpg của máy bạn, hãy bỏ comment dòng dưới: */
+    /* background-image: url('8k.jpg'); */
+    
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    color: #fff;
+}
+
+/* Ẩn nút tăng giảm số (spinner) */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.wrapper {
+    /* Thêm màu nền đen mờ để chữ luôn nổi bật */
+    background: rgba(0, 0, 0, 0.5); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 15px;
+    padding: 30px 40px;
+}
+
+.calculator-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    max-height: 95vh;
+    overflow-y: auto;
+}
+
+h1 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Controls */
+.controls-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.control-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+select {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+option { background: #333; }
+
+.btn-reset {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-reset:hover { background: rgba(255,255,255,0.2); }
+
+/* Chain Layout */
+.chain-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; /* Căn giữa dọc */
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+/* Matrix Box */
+.matrix-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 220px;
+}
+
+.matrix-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+}
+.matrix-header h3 { font-size: 18px; color: #4facfe; }
+
+.dim-inputs input {
+    width: 40px;
+    padding: 2px;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: #fff;
+    text-align: center;
+}
+
+/* Operator Box (Dấu + - x) */
+.operator-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+}
+
+.operator-select {
+    background: transparent;
+    border: none;
+    color: #ffd700;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    appearance: none;
+    padding: 0;
+}
+
+/* Grid */
+.matrix-grid {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.matrix-cell {
+    width: 55px;
+    height: 35px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.matrix-cell:focus {
+    background: rgba(255,255,255,0.15);
+    border-color: #fff;
+    outline: none;
+}
+
+/* Tools */
+.matrix-tools { display: flex; gap: 5px; }
+.tool-btn {
+    flex: 1;
+    padding: 5px;
+    font-size: 11px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.tool-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+/* Main Button */
+.action-area { text-align: center; margin-top: 20px; }
+.btn {
+    padding: 12px 50px;
+    background: #fff;
+    color: #333;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+/* Result & History */
+.message-box { margin-top: 20px; padding: 10px; border-radius: 8px; text-align: center; }
+.error { background: rgba(255, 0, 0, 0.2); border: 1px solid red; color: #ffcccc; }
+.hidden { display: none !important; }
+
+#result-area { margin-top: 30px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+#result-matrix input { background: rgba(0, 255, 0, 0.1); border-color: rgba(0, 255, 0, 0.4); font-weight: bold; }
+
+.history-section { margin-top: 30px; }
+#history-list { list-style: none; max-height: 150px; overflow-y: auto; text-align: left; margin-top: 10px; }
+#history-list li {
+    background: rgba(255,255,255,0.05);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    border-left: 3px solid #4facfe;
+}
+
+/* Modal */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85); z-index: 1000;
+    display: flex; justify-content: center; align-items: center;
+    backdrop-filter: blur(5px);
+}
+.modal-content { max-width: 400px; text-align: center; background: rgba(30, 30, 30, 0.95); }
+.qr-container img { width: 180px; margin: 15px 0; border-radius: 10px; border: 2px solid #fff; }
+.input-box { position: relative; margin: 20px 0; height: 45px; }
+.input-box input {
+    width: 100%; height: 100%; background: rgba(255,255,255,0.1);
+    border: none; outline: none; border-radius: 30px;
+    padding: 0 40px 0 20px; color: #fff;
+}
+.input-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 20px; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }

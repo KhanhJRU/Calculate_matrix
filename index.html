@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhanhJR</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="wrapper calculator-wrapper">
+        <h1><i class='bx bx-grid-alt'></i> CASIO MATRIX</h1>
+        
+        <!-- Khu vực chọn số lượng ma trận -->
+        <div class="controls-top">
+            <label>OPTION:</label>
+            <select id="matrixCount" onchange="renderCalculationChain()">
+                <option value="2">Matrix (A, B)</option>
+                <option value="3">Matrix (A, B, C)</option>
+                <option value="4">Matrix (A, B, C, D)</option>
+            </select>
+            <button class="btn-reset" onclick="renderCalculationChain()"><i class='bx bx-refresh'></i> RESET</button>
+        </div>
+
+        <!-- Khu vực chứa chuỗi tính toán (Ma trận + Phép tính xen kẽ) -->
+        <div id="calculation-chain" class="chain-container">
+            <!-- JS sẽ render: [Matrix A] -> [Op] -> [Matrix B] -> ... -->
+        </div>
+
+        <!-- Nút tính toán -->
+        <div class="action-area">
+            <button class="btn" onclick="processCalculation()">
+                <i class='bx bx-calculator'></i> COMPUTE THE RESULT
+            </button>
+        </div>
+
+        <!-- Khu vực hiển thị lỗi -->
+        <div id="error-box" class="message-box error hidden"></div>
+
+        <!-- Khu vực hiển thị kết quả -->
+        <div id="result-area" class="hidden">
+            <h2><i class='bx bx-check-circle'></i> Final Answer:</h2>
+            <div id="result-matrix" class="matrix-grid display-grid"></div>
+        </div>
+
+        <!-- Lịch sử -->
+        <div class="history-section">
+            <h3><i class='bx bx-history'></i> Calculation History</h3>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+
+    <!-- Modal Vui nhộn (Paywall) -->
+    <div id="paywall-modal" class="modal hidden">
+        <div class="modal-content wrapper">
+            <div class="modal-header">
+                <i class='bx bxs-lock-alt' style="font-size: 50px; color: #ff4757;"></i>
+            </div>
+            <h2 style="color: #ff4757;">KẾT QUẢ ĐÃ SẴN SÀNG!</h2>
+            <p>GÓI PRO: 99.000</p>
+            
+            <div class="qr-container">
+                <img src="QR_money.jpg" alt="QR Code" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=DonateForProfessor'"> 
+                <p><small>Quét mã hoặc nhập mã VIP</small></p>
+            </div>
+
+            <div class="input-box">
+                <input type="text" id="coupon-code" placeholder="Nhập mã">
+                <i class='bx bxs-coupon'></i>
+            </div>
+
+            <button class="btn" onclick="verifyCode()">Mở Khóa Ngay</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
